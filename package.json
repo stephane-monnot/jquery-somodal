@@ -2,7 +2,7 @@
   "name": "jquery.somodal.js",
   "filename": "jquery.somodal.min.js",
   "description": "Plugin Jquery permettant d'afficher du contenu dans une popin",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/shinbuntu/jquery-somodal.git"
