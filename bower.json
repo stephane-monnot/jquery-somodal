@@ -1,0 +1,24 @@
+{
+  "name": "jquery.somodal.js",
+  "description": "Plugin Jquery permettant d'afficher du contenu dans une popin",
+  "authors": [
+    "Stéphane Monnot <smonnot@solire.fr>"
+  ],
+  "main": [
+      "./src/js/jquery.somodal.js",
+      "./src/css/jquery.somodal.css"
+  ],
+  "version": "1.0.0",
+  "keywords": [
+    "modal",
+    "popin"
+  ],
+  "license": "CC BY-NC-SA 3.0",
+  "dependencies": {
+    "jquery": ">=1.8.0",
+    "jquery.transit": ">=0.9"
+  },
+  "ignore": [
+    "bower_components"
+  ]
+}

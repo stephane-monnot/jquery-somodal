@@ -1,0 +1,8 @@
+# Éditeurs #
+############
+/nbproject/private/
+
+# Node + bower components#
+node_modules
+bower_components
+npm-debug.log
