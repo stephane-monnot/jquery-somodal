@@ -11,7 +11,7 @@
     "./dist/css/jquery.somodal.min.css",
     "./dist/css/img/close.png"
   ],
-  "version": "1.0.0",
+  "version": "1.0.2",
   "keywords": [
     "modal",
     "popin"
