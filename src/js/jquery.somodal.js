@@ -95,7 +95,7 @@
             })
             
             // Au clic sur le button close
-            this.elems.close.bind('click', function(e) {
+            $('.' + this.options.classPrefix + 'Close').bind('click', function(e) {
                     soModalObject.close();
                     e.preventDefault();
             })
