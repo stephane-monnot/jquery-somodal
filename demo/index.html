@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="fr" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="fr" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="fr" class="no-js lt-ie9"> <![endif]-->
+<!--[if vi IE 8]><!--> <html lang="fr" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <title>Jquery.somodal</title>
+        <meta name="description" content="" />
+        <meta name="keywords" lang="fr" content="" />
+
+
+        <meta name="language" content="fr" />
+        <meta name="robots" content="index, follow, all" />
+        <meta name="googlebot" content="index, follow, all" />
+
+        <meta name="google-site-verification" content="" />
+        <meta name="msvalidate.01" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Solire" />
+
+        <script src="../dist/js/lib/jquery.min.js" type="text/javascript"></script>
+        <script src="../dist/js/lib/jquery.transit.min.js" type="text/javascript"></script>
+        
+        <script src="../dist/js/jquery.somodal.min.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" href="../dist/css/jquery.somodal.min.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="./css/demo.css" type="text/css" media="screen" />
+    </head>
+
+    <body role="document"  itemscope itemtype="http://schema.org/WebPage">
+
+        <div class="container-examples">
+            <select class="examples"></select>
+            <select class="easings">
+                <option value="linear">linear</option>
+                <option value="ease">ease</option>
+                <option value="in">in</option>
+                <option value="out">out</option>
+                <option value="in-out">in-out</option>
+                <option value="snap">snap</option>
+                <option value="easeOutCubic">easeOutCubic</option>
+                <option value="easeInOutCubic">easeInOutCubic</option>
+                <option value="easeInCirc">easeInCirc</option>
+                <option value="easeOutCirc">easeOutCirc</option>
+                <option value="easeInOutCirc">easeInOutCirc</option>
+                <option value="easeInExpo">easeInExpo</option>
+                <option value="easeOutExpo">easeOutExpo</option>
+                <option value="easeInOutExpo">easeInOutExpo</option>
+                <option value="easeInQuad">easeInQuad</option>
+                <option value="easeOutQuad">easeOutQuad</option>
+                <option value="easeInOutQuad">easeInOutQuad</option>
+                <option value="easeInQuart">easeInQuart</option>
+                <option value="easeOutQuart">easeOutQuart</option>
+                <option value="easeInOutQuart">easeInOutQuart</option>
+                <option value="easeInQuint">easeInQuint</option>
+                <option value="easeOutQuint">easeOutQuint</option>
+                <option value="easeInOutQuint">easeInOutQuint</option>
+                <option value="easeInSine">easeInSine</option>
+                <option value="easeOutSine">easeOutSine</option>
+                <option value="easeInOutSine">easeInOutSine</option>
+                <option value="easeInBack">easeInBack</option>
+                <option value="easeOutBack">easeOutBack</option>
+                <option value="cubic-bezier(0.155, 1.435, 0.5, 1)">cubic-bezier(0.155, 1.435, 0.5, 1)</option>
+                
+                
+            </select>
+            
+            <select class="times">
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+                <option value="1000">1000</option>
+                <option value="1100">1100</option>
+                <option value="1200">1200</option>
+                <option value="1300">1300</option>
+                <option value="1400">1400</option>
+            </select>
+            <button class="openModal">Open modal</button>
+        </div>
+
+        <div style="display:none;" class="soModalExample">
+            <h1>新太郎ニューモダル</h1>
+            <form action="/ma-page-de-traitement" method="post">
+                <div>
+                    <label for="nom">Nom :</label>
+                    <input type="text" id="nom" />
+                </div>
+                <div>
+                    <label for="courriel">Courriel :</label>
+                    <input type="email" id="courriel" />
+                </div>
+                <div>
+                    <label for="message">Message :</label>
+                    <textarea id="message"></textarea>
+                </div>
+            </form>
+            <button class="openModal">Open modal</button>
+            禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ	てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ
+
+            ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく
+
+            みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ
+        </div>
+
+        <script type="text/javascript">
+
+            var options;
+            
+            var easing;
+            var time;
+
+            var examples = {
+                rotateX: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        modal.css({rotateX: '-90deg'});
+                        if (!alreadyOpened) {
+                            overlay.css({opacity: 0});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        modal.transition({
+                            perspective: '800px',
+                            rotateX: '0deg'
+                        }, time, easing)
+                        if (!alreadyOpened) {
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({left: -modal.finalWidth}, time, easing);
+                            overlay.transition({opacity: 0}, time, easing, function() {
+                                overlay.remove();
+                                modal.remove();
+                            });
+                        } else {
+                            modal.transition({
+                                perspective: '800px',
+                                rotateX: '90deg'
+                              }, time, easing, function() {
+                                  modal.remove();
+                            });
+                        }
+                    }
+                },
+                scaleAndSlideIn: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.css({opacity: 0});
+                            modal.css({scale: 0.2});
+                            overlay.css({opacity: 0});
+                        } else {
+                            modal.css({left: -modal.finalWidth});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({opacity: 1, queue: false}, time, easing);
+                            modal.transition({scale: 1}, time, easing);
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        } else {
+                            modal.transition({left: modal.finalPosition.left}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({scale: 0}, time, easing);
+                            overlay.transition({opacity: 0}, function() {
+                                overlay.remove();
+                                modal.remove();
+                            }, time, easing);
+                        } else {
+                            modal.transition({left: -modal.finalWidth}, time, easing, function() {
+                                modal.remove();
+                            });
+                        }
+                    }
+                },
+                justMe: {
+                    classPrefix: 'soModalExample',
+                    init: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            overlay.css({opacity: 0});
+                            modal.css({background: 'transparent'});
+                            modal.css({opacity: 0});
+                            modal.css({scale: 0.8});
+                        } else {
+                            modal.css({left: -modal.finalWidth});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            overlay.transition({opacity: 1}, time, easing, function() {
+                                modal.transition({opacity: 1, queue: false}, time, easing);
+                                modal.transition({scale: 1}, time, easing);
+                            });
+                            
+                        } else {
+                            modal.transition({left: modal.finalPosition.left}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({scale: 0}, function() {
+                                overlay.transition({opacity: 0}, function() {
+                                    overlay.remove();
+                                    modal.remove();
+                                }, time, easing);
+                            }, time, easing);
+                        } else {
+                            modal.transition({left: -modal.finalWidth}, function() {
+                                modal.remove();
+                            }, time, easing);
+                        }
+                    }
+                },
+                newspaper: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay) {
+                        modal.css({scale: 0, rotate: '720deg'});
+                        overlay.css({opacity: 0});
+                    },
+                    in: function(modal, overlay) {
+                        modal.transition({scale: 1, rotate: '0deg'}, time, easing);
+                        overlay.transition({opacity: 0.8}, time, easing);
+                    },
+                    out: function(modal, overlay) {
+                        modal.transition({scale: 0, rotate: '720deg'}, time, easing);
+                        overlay.transition({opacity: 0}, function() {
+                            overlay.remove();
+                            modal.remove();
+                        }, time, easing);
+                    }
+                },
+                slideIn: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        modal.css({left: -modal.finalWidth});
+                        if (!alreadyOpened) {
+                            overlay.css({opacity: 0});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        modal.transition({left: modal.finalPosition.left}, time, easing);
+                        if (!alreadyOpened) {
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({left: -modal.finalWidth}, time, easing);
+                            overlay.transition({opacity: 0}, function() {
+                                overlay.remove();
+                                modal.remove();
+                            }, time, easing);
+                        } else {
+                            modal.transition({left: $(window).width() + modal.finalWidth}, time, easing, function() {
+                                modal.remove();
+                            });
+                        }
+                    }
+                }
+            }
+
+            $.each(examples, function(id, example) {
+                $('.examples').append('<option value="' + id + '">' + id + '</option>')
+            })
+            
+            $('.easings').change(function() {
+                easing = $(this).val();
+                options = examples[$('.examples').val()];
+            })
+
+            $('.times').change(function() {
+                time = $(this).val();
+                options = examples[$('.examples').val()];
+            })
+
+
+            $('.examples').change(function() {
+                options = examples[$(this).val()];
+            })
+
+            $('.examples, .times, .easings').change();
+
+            $(document).ready(function() {
+                $('body').on('click', '.openModal', function() {
+                    var modalContent = $('.soModalExample')
+                            .clone()
+                            .removeClass('soModalExample')
+                            .show()
+                            .get();
+                    $.soModal.open(modalContent, options);
+                })
+            });
+
+        </script>
+
+    </body>
+</html>
+
