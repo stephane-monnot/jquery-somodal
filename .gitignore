@@ -1,6 +1,6 @@
 # Éditeurs #
 ############
-/nbproject/private/
+/nbproject/
 
 # Node + bower components#
 node_modules

@@ -5,8 +5,11 @@
     "Stéphane Monnot <smonnot@solire.fr>"
   ],
   "main": [
-      "./src/js/jquery.somodal.js",
-      "./src/css/jquery.somodal.css"
+    "./dist/js/jquery.somodal.js",
+    "./dist/js/jquery.somodal.min.js",
+    "./dist/css/jquery.somodal.css",
+    "./dist/css/jquery.somodal.min.css",
+    "./dist/css/img/close.png"
   ],
   "version": "1.0.0",
   "keywords": [
@@ -19,6 +22,11 @@
     "jquery.transit": ">=0.9"
   },
   "ignore": [
-    "bower_components"
-  ]
+    "bower_components",
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/shinbuntu/jquery-somodal"
 }
