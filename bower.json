@@ -23,6 +23,7 @@
   },
   "ignore": [
     "bower_components",
+    "demo/",
     "dist/js/lib/",
     "**/.*",
     "node_modules",
