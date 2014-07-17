@@ -17,6 +17,7 @@
         defaults: {
             classPrefix: 'soModalDefault',
             closeHTML: '<a title="Fermer" href="#"></a>',
+            overflowY: 'auto', // 'scroll' / 'auto'
             modalClasses: null,
             closeOnEscape: true,
             init: null,
@@ -95,7 +96,7 @@
             })
             
             // Au clic sur le button close
-            this.elems.close.bind('click', function(e) {
+            $('.' + this.options.classPrefix + 'Close').bind('click', function(e) {
                     soModalObject.close();
                     e.preventDefault();
             })
@@ -131,7 +132,8 @@
             
             this.elems.overlay.appendTo('body')
             // On crée un container que l'on ajoute au body
-            this.elems.containerFixed = $('<div>').addClass('soModalContainerFixed');
+            this.elems.containerFixed = $('<div>').addClass('soModalContainerFixed')
+                    .css({overflowY: this.options.overflowY});
             this.elems.containerFixed.appendTo('body')
             
             // On crée une div avec le contenu à afficher et on l'ajoute au container
