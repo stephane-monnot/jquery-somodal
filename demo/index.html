@@ -33,6 +33,7 @@
         <div class="container-examples">
             <select class="examples"></select>
             <select class="easings">
+                <option value="">default</option>
                 <option value="linear">linear</option>
                 <option value="ease">ease</option>
                 <option value="in">in</option>
@@ -67,6 +68,7 @@
             </select>
             
             <select class="times">
+                <option value="">default</option>
                 <option value="200">200</option>
                 <option value="300">300</option>
                 <option value="400">400</option>
@@ -128,6 +130,7 @@
             <button class="openModal" data-somodal-elem=".soModalExample3">Précedent</button>
             <button class="openModal" data-somodal-elem=".soModalExample3">Suivant</button>
         </div>
+      
 
         <script type="text/javascript">
 
@@ -136,6 +139,35 @@
             var easing, time;
 
             var examples = {
+                superScale: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        modal.css({scale: 2, opacity: 0});
+                        if (!alreadyOpened) {
+                            overlay.css({opacity: 0});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        modal.transition({
+                            scale: 1,
+                            opacity: 1
+                        }, time, easing)
+                        if (!alreadyOpened) {
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, alreadyOpened) {
+                        modal.transition({scale: 2, opacity: 0}, time, easing, function() {
+                            modal.remove();
+                        });
+                        if (!alreadyOpened) {
+                            overlay.transition({opacity: 0}, time, easing, function() {
+                                overlay.remove();
+                            });
+                        }
+                    }
+                },
                 rotateX: {
                     classPrefix: 'soModalExample',
                     modalClasses: 'soModalExampleModalBoxShadow',
@@ -287,6 +319,46 @@
                             }, time, easing);
                         } else {
                             modal.transition({left: $(window).width() + modal.finalWidth}, time, easing, function() {
+                                modal.remove();
+                            });
+                        }
+                    }
+                },
+                bodyScale: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.css({opacity: 0});
+                            modal.css({scale: 0.2});
+                            $('body').css({scale: 1});
+                            overlay.css({opacity: 0});
+                        } else {
+                            modal.css({left: -modal.finalWidth});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({opacity: 1, queue: false}, time, easing);
+                            modal.transition({scale: 1.1}, time, easing);
+                            $('body').transition({scale: 0.9}, time, easing);
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        } else {
+                            modal.transition({left: modal.finalPosition.left}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
+                            modal.transition({scale: 0}, time, easing);
+                            $('body').transition({scale: 1}, time, easing, function() {
+                                $('body').css({scale: null});
+                            });
+                            overlay.transition({opacity: 0}, function() {
+                                overlay.remove();
+                                modal.remove();
+                            }, time, easing);
+                        } else {
+                            modal.transition({left: -modal.finalWidth}, time, easing, function() {
                                 modal.remove();
                             });
                         }
