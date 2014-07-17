@@ -108,6 +108,7 @@
                 soModalObject.elems.containerFixed.remove();
                 soModalObject.elems.containerFixed = null;
                 soModalObject.elems.modal = null;
+                $('body').removeClass('soModalOpen');
                 $(document).trigger('closed.so.modal');
             });
         },
