@@ -22,7 +22,11 @@
             closeOnEscape: true,
             init: null,
             in: null,
-            out: null
+            out: null,
+            afterShow: null,
+            beforeShow: null,
+            afterHide: null,
+            beforeHide: null
         },
         content: {
             body: ''
@@ -53,7 +57,6 @@
             
             lastTabbableElement.addEventListener('keydown', keyListener, false);
         },
-        
         tabIndex: function(context, openContext) {
             $(this.tabbableElements).attr('tabIndex', !openContext ? 0 : -1)
             if(context) {
@@ -67,6 +70,8 @@
             modal: null,
             close: null
         },
+        nbTransitionRemaining: 0,
+        state: null,
         tabbableElements: 'a[href], area[href], input:not([disabled]),' +
 	'select:not([disabled]), textarea:not([disabled]),' +
 	'button:not([disabled]), iframe, object, embed, *[tabindex],' +
@@ -162,9 +167,78 @@
             this.updateSize();
             this.updatePosition();
             
-            this.elems.modal.addClass(this.options.classPrefix + 'ModalInit');
+            /*
+             * On definie notre propre function de transition pour la modal et
+             * l'overlay afin de se servir du callback des transitions pour 
+             * detecter la fin de toutes les animations
+             */
+            var soModalTransition = function(properties, duration, easing, callback2) {
+                soModalObject.nbTransitionRemaining++;
+                callback = function() {
+                    if($.isFunction(callback2)) {
+                        callback2.apply(this);
+                    };
+                    soModalObject.nbTransitionRemaining--;
+                    // Si toutes les transitions ont été faites
+                    if(soModalObject.nbTransitionRemaining == 0) {
+                        // On appelle la function afterShow ou afterHide
+                        if(soModalObject.state == 'in' 
+                            && $.isFunction(soModalObject.options.afterShow)
+                        ) {
+                            soModalObject.options.afterShow.call(
+                                soModalObject, 
+                                soModalObject.elems.modal, 
+                                soModalObject.elems.overlay, 
+                                alreadyOpened
+                            );
+                        } else if(soModalObject.state == 'out') {
+                            if($.isFunction(soModalObject.options.afterHide)) {
+                                soModalObject.options.afterHide.call(
+                                    soModalObject, 
+                                    soModalObject.elems.modal, 
+                                    soModalObject.elems.overlay, 
+                                    alreadyOpened
+                                );
+                            }
+                            soModalObject.elems.overlay.remove();
+                            soModalObject.elems.modal.remove();
+                            soModalObject.state = null;
+                        }
+                    }
+                }
+
+                $(this).transit(properties, duration, easing, callback);
+            }
             
-            // Etat initial
+            this.elems.modal.transition = soModalTransition;
+            this.elems.overlay.transition = soModalTransition;
+            
+            /*
+             * Etat initial (INIT)
+             */ 
+            
+            this.state = 'init';
+            
+            // On ajoute nos classes init
+            this.elems.modal.addClass(this.options.classPrefix + 'ModalInit');
+            this.elems.overlay.addClass(this.options.classPrefix + 'OverlayInit');
+            
+            if($.isFunction(this.options.init)) {
+                // On appelle la function init
+                this.options.init.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+            }
+            
+            // On appelle la function beforeShow
+            if($.isFunction(this.options.beforeShow)) {
+                this.options.beforeShow.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+            }
+            
+            /*
+             * Etat ouvert (IN)
+             */ 
+            
+            this.state = 'in';
+            
             // On ajoute les classes d'effets et supprime nos classes init
             this.elems.overlay.delay(1).queue(function() {
                 soModalObject.elems.overlay
@@ -180,25 +254,36 @@
                 soModalObject.elems.modal.dequeue()
             })
             
-            
-            if($.isFunction(this.options.init)) {
-                // On appelle la function init
-                this.options.init.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
-            }
-                        
-            // Etat ouvert
             if($.isFunction(this.options.in)) {
                 // On appelle la function in
                 this.options.in.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
             }
             
+            // Si aucune transition definie
+            if(soModalObject.nbTransitionRemaining == 0) {
+                // On appelle la function afterShow
+                if($.isFunction(this.options.afterShow)) {
+                    this.options.afterShow.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+                }
+            }
+                        
             this.accessibility(true);
             
         },
         close: function(alreadyOpened) {
             var soModalObject = this;
             
-            // Etat fermé
+            // On appelle la function beforeHide
+            if($.isFunction(this.options.beforeHide)) {
+                this.options.beforeHide.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+            }
+            
+            /*
+             * Etat fermé
+             */ 
+            
+            this.state = 'out';
+            
             // On supprime les classes d'effets
             this.elems.overlay.delay(1).queue(function() {
                 soModalObject.elems.overlay
@@ -218,9 +303,17 @@
             if($.isFunction(this.options.out)) {
                 // call user provided method
                 this.options.out.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
-            } else {
+            }
+            
+            // Si aucune transition definie
+            if(soModalObject.nbTransitionRemaining == 0) {
+                // On appelle la function afterHide
+                if($.isFunction(this.options.afterHide)) {
+                    this.options.afterHide.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+                }
                 this.elems.overlay.remove();
                 this.elems.modal.remove();
+                this.state = null;
             }
             
             this.accessibility(false);
@@ -266,7 +359,7 @@
     };
     
     if (!$.support.transition) {
-        $.fn.transition = $.fn.animate;
+        $.fn.transit = $.fn.animate;
     }
 
     $.soModal = {
