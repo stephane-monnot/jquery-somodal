@@ -20,13 +20,34 @@
             overflowY: 'auto', // 'scroll' / 'auto'
             modalClasses: null,
             closeOnEscape: true,
-            init: null,
-            in: null,
-            out: null,
             afterShow: null,
             beforeShow: null,
             afterHide: null,
-            beforeHide: null
+            beforeHide: null,
+            init: function(modal, overlay, alreadyOpened) {
+                modal.css({opacity: 0});
+                if (!alreadyOpened) {
+                    overlay.css({opacity: 0});
+                }
+            },
+            in: function(modal, overlay, alreadyOpened) {
+                if (!alreadyOpened) {
+                    overlay.transition({opacity: 0.8}, '', '', function() {
+                        modal.transition({opacity: 1});
+                    });
+                } else {
+                    modal.transition({opacity: 1});
+                }
+            },
+            out: function(modal, overlay, hasNextModal) {
+                if (!hasNextModal) {
+                    modal.transition({opacity: 0}, '', '', function() {
+                        overlay.transition({opacity: 0});
+                    });
+                } else {
+                    modal.transition({opacity: 0});
+                }
+            }
         },
         content: {
             body: ''
