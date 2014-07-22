@@ -173,6 +173,18 @@
              * detecter la fin de toutes les animations
              */
             var soModalTransition = function(properties, duration, easing, callback2) {
+                if (typeof duration === 'function') {
+                    callback2 = duration;
+                    duration = undefined;
+                }
+                if (typeof easing === 'function') {
+                    callback2 = easing;
+                    easing = undefined;
+                }
+                if (typeof properties.complete !== 'undefined') {
+                    callback2 = properties.complete;
+                    delete properties.complete;
+                }
                 soModalObject.nbTransitionRemaining++;
                 callback = function() {
                     if($.isFunction(callback2)) {
