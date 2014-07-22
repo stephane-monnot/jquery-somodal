@@ -10,7 +10,6 @@
         <meta name="keywords" lang="fr" content="" />
 
 
-        <meta name="language" content="fr" />
         <meta name="robots" content="index, follow, all" />
         <meta name="googlebot" content="index, follow, all" />
 
@@ -85,7 +84,7 @@
             </select>
             <button class="openModal" data-somodal-elem=".soModalExample1">SoModal - Basic</button>
             <button class="openModal" data-somodal-elem=".soModalExample2">SoModal - Formulaire</button>
-            <button class="openModal" data-somodal-elem=".soModalExample3">SoModal - Long contenu</button>
+            <button class="openModal" data-somodal data-somodal-elem=".soModalExample3">SoModal - Long contenu</button>
         </div>
         
         <div style="display:none;" class="soModalExample1">
@@ -157,14 +156,10 @@
                             overlay.transition({opacity: 0.8}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        modal.transition({scale: 2, opacity: 0}, time, easing, function() {
-                            modal.remove();
-                        });
-                        if (!alreadyOpened) {
-                            overlay.transition({opacity: 0}, time, easing, function() {
-                                overlay.remove();
-                            });
+                    out: function(modal, overlay, hasNextModal) {
+                        modal.transition({scale: 2, opacity: 0}, time, easing);
+                        if (!hasNextModal) {
+                            overlay.transition({opacity: 0}, time, easing);
                         }
                     }
                 },
@@ -186,20 +181,15 @@
                             overlay.transition({opacity: 0.8}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
                             modal.transition({left: -modal.finalWidth}, time, easing);
-                            overlay.transition({opacity: 0}, time, easing, function() {
-                                overlay.remove();
-                                modal.remove();
-                            });
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
                             modal.transition({
                                 perspective: '800px',
                                 rotateX: '90deg'
-                              }, time, easing, function() {
-                                  modal.remove();
-                            });
+                              }, time, easing);
                         }
                     }
                 },
@@ -224,17 +214,12 @@
                             modal.transition({left: modal.finalPosition.left}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
                             modal.transition({scale: 0}, time, easing);
-                            overlay.transition({opacity: 0}, function() {
-                                overlay.remove();
-                                modal.remove();
-                            }, time, easing);
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
-                            modal.transition({left: -modal.finalWidth}, time, easing, function() {
-                                modal.remove();
-                            });
+                            modal.transition({left: -modal.finalWidth}, time, easing);
                         }
                     }
                 },
@@ -261,18 +246,13 @@
                             modal.transition({left: modal.finalPosition.left}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
-                            modal.transition({scale: 0}, function() {
-                                overlay.transition({opacity: 0}, function() {
-                                    overlay.remove();
-                                    modal.remove();
-                                }, time, easing);
-                            }, time, easing);
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
+                            modal.transition({scale: 0}, time, easing, function() {
+                                overlay.transition({opacity: 0}, time, easing);
+                            });
                         } else {
-                            modal.transition({left: -modal.finalWidth}, function() {
-                                modal.remove();
-                            }, time, easing);
+                            modal.transition({left: -modal.finalWidth}, time, easing);
                         }
                     }
                 },
@@ -289,10 +269,7 @@
                     },
                     out: function(modal, overlay) {
                         modal.transition({scale: 0, rotate: '720deg'}, time, easing);
-                        overlay.transition({opacity: 0}, function() {
-                            overlay.remove();
-                            modal.remove();
-                        }, time, easing);
+                        overlay.transition({opacity: 0}, time, easing);
                     }
                 },
                 slideIn: {
@@ -310,17 +287,12 @@
                             overlay.transition({opacity: 0.8}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
                             modal.transition({left: -modal.finalWidth}, time, easing);
-                            overlay.transition({opacity: 0}, function() {
-                                overlay.remove();
-                                modal.remove();
-                            }, time, easing);
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
-                            modal.transition({left: $(window).width() + modal.finalWidth}, time, easing, function() {
-                                modal.remove();
-                            });
+                            modal.transition({left: $(window).width() + modal.finalWidth}, time, easing);
                         }
                     }
                 },
@@ -340,7 +312,7 @@
                     in: function(modal, overlay, alreadyOpened) {
                         if (!alreadyOpened) {
                             modal.transition({opacity: 1, queue: false}, time, easing);
-                            modal.transition({scale: 1.1}, time, easing);
+                            modal.transition({scale: 1}, time, easing);
                             $('body').transition({scale: 0.9}, time, easing);
                             overlay.transition({opacity: 0.8}, time, easing);
                         } else {
@@ -353,14 +325,9 @@
                             $('body').transition({scale: 1}, time, easing, function() {
                                 $('body').css({scale: null});
                             });
-                            overlay.transition({opacity: 0}, function() {
-                                overlay.remove();
-                                modal.remove();
-                            }, time, easing);
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
-                            modal.transition({left: -modal.finalWidth}, time, easing, function() {
-                                modal.remove();
-                            });
+                            modal.transition({left: -modal.finalWidth}, time, easing);
                         }
                     }
                 }
