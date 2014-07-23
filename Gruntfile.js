@@ -62,7 +62,7 @@ module.exports = function(grunt) {
               tasks: ['concat:dist', 'uglify:build']
             },
             styles: {
-              files: 'css/**/*.css',
+              files: 'src/**/*.css',
               tasks: ['copy:css', 'cssmin']
             }
         }
