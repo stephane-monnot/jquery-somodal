@@ -149,7 +149,7 @@
             var soModalObject = this;
             
             // On crée l'overlay qu'on ajoute au body
-            if(!this.elems.overlay) {
+            if(!alreadyOpened) {
                 this.elems.overlay = $('<div>')
                         .addClass('soModalOverlay')
                         .addClass(this.options.classPrefix + 'Overlay')
@@ -215,7 +215,7 @@
                     // Si toutes les transitions ont été faites
                     if(soModalObject.nbTransitionRemaining == 0) {
                         // On appelle la function afterShow ou afterHide
-                        if(soModalObject.state == 'in' 
+                        if((soModalObject.state == 'in' || soModalObject.state == null) 
                             && $.isFunction(soModalObject.options.afterShow)
                         ) {
                             soModalObject.options.afterShow.call(
@@ -303,12 +303,12 @@
             this.accessibility(true);
             
         },
-        close: function(alreadyOpened) {
+        close: function(hasNextModal) {
             var soModalObject = this;
             
             // On appelle la function beforeHide
             if($.isFunction(this.options.beforeHide)) {
-                this.options.beforeHide.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+                this.options.beforeHide.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
             }
             
             /*
@@ -335,14 +335,14 @@
             // On appelle la function out
             if($.isFunction(this.options.out)) {
                 // call user provided method
-                this.options.out.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+                this.options.out.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
             }
             
             // Si aucune transition definie
             if(soModalObject.nbTransitionRemaining == 0) {
                 // On appelle la function afterHide
                 if($.isFunction(this.options.afterHide)) {
-                    this.options.afterHide.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+                    this.options.afterHide.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
                 }
                 this.elems.overlay.remove();
                 this.elems.modal.remove();
