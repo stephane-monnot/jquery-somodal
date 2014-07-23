@@ -142,6 +142,22 @@
                     classPrefix: 'soModalExample',
                     modalClasses: 'soModalExampleModalBoxShadow'
                 },
+                withCallBack: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    afterShow: function() {
+                        alert('afterShow');
+                    },
+                    beforeShow: function() {
+                        alert('beforeShow');
+                    },
+                    afterHide: function() {
+                        alert('afterHide');
+                    },
+                    beforeHide: function() {
+                        alert('beforeHide');
+                    }
+                },
                 noEffect: {
                     classPrefix: 'soModalExample',
                     modalClasses: 'soModalExampleModalBoxShadow',
