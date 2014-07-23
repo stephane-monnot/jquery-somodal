@@ -41,9 +41,8 @@
             },
             out: function(modal, overlay, hasNextModal) {
                 if (!hasNextModal) {
-                    modal.transition({opacity: 0}, '', '', function() {
-                        overlay.transition({opacity: 0});
-                    });
+                    modal.transition({opacity: 0});
+                    overlay.transition({opacity: 0});
                 } else {
                     modal.transition({opacity: 0});
                 }
