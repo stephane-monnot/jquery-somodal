@@ -23,7 +23,7 @@
 }
 
 .soModal {
-    cursor: inherit;
+    cursor: auto;
     position: relative;
     width: 60%;
     margin-top: 20px;
