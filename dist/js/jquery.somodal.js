@@ -32,7 +32,7 @@
             },
             in: function(modal, overlay, alreadyOpened) {
                 if (!alreadyOpened) {
-                    overlay.transition({opacity: 0.8}, '', '', function() {
+                    overlay.transition({opacity: 0.8}, function() {
                         modal.transition({opacity: 1});
                     });
                 } else {
