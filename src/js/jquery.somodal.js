@@ -28,29 +28,31 @@
         },
         keepFocus: function(context) {
             if(context) {
-                var allTabbableElements = context.find(this.tabbableElements);
-                var firstTabbableElement = allTabbableElements[0];
-                var lastTabbableElement = allTabbableElements[allTabbableElements.length - 1];
-            }
-            var keyListener = function(event) {
-                var keyCode = event.which || event.keyCode; // Get the current keycode
+                var allTabbableElements = context.find(this.tabbableElements),
+                    firstTabbableElement = allTabbableElements[0],
+                    lastTabbableElement = allTabbableElements[allTabbableElements.length - 1],
+                    keyListener = function(event) {
+                    var keyCode = event.which || event.keyCode; // Get the current keycode
 
-                // If it is TAB
-                if (keyCode === 9) {
+                    // If it is TAB
+                    if (keyCode === 9) {
 
-                    // Prevent the default behavior
-                    if (event.preventDefault) {
-                        event.preventDefault();
-                    } else {
-                        event.returnValue = false;
+                        // Prevent the default behavior
+                        if (event.preventDefault) {
+                            event.preventDefault();
+                        } else {
+                            event.returnValue = false;
+                        }
+
+                        // Move the focus to the first element that can be tabbed
+                        firstTabbableElement.focus();
                     }
-
-                    // Move the focus to the first element that can be tabbed
-                    firstTabbableElement.focus();
+                };
+                
+                if(lastTabbableElement) {
+                    lastTabbableElement.addEventListener('keydown', keyListener, false);
                 }
-            };
-            
-            lastTabbableElement.addEventListener('keydown', keyListener, false);
+            }
         },
         
         tabIndex: function(context, openContext) {
@@ -222,6 +224,7 @@
             }
             
             this.accessibility(false);
+            this.unBindEvents();
             
         },
         isOpen: function() {
