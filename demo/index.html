@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="fr" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="fr" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="fr" class="no-js lt-ie9"> <![endif]-->
-<!--[if vi IE 8]><!--> <html lang="fr" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="fr" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="UTF-8" />
         <title>Jquery.somodal</title>
@@ -10,7 +10,6 @@
         <meta name="keywords" lang="fr" content="" />
 
 
-        <meta name="language" content="fr" />
         <meta name="robots" content="index, follow, all" />
         <meta name="googlebot" content="index, follow, all" />
 
@@ -33,6 +32,7 @@
         <div class="container-examples">
             <select class="examples"></select>
             <select class="easings">
+                <option value="">default</option>
                 <option value="linear">linear</option>
                 <option value="ease">ease</option>
                 <option value="in">in</option>
@@ -67,6 +67,7 @@
             </select>
             
             <select class="times">
+                <option value="">default</option>
                 <option value="200">200</option>
                 <option value="300">300</option>
                 <option value="400">400</option>
@@ -81,41 +82,114 @@
                 <option value="1300">1300</option>
                 <option value="1400">1400</option>
             </select>
-            <button class="openModal">Open modal</button>
+            <button class="openModal" data-somodal-elem=".soModalExample1">SoModal - Basic</button>
+            <button class="openModal" data-somodal-elem=".soModalExample2">SoModal - Formulaire</button>
+            <button class="openModal" data-somodal data-somodal-elem=".soModalExample3">SoModal - Long contenu</button>
+        </div>
+        
+        <div style="display:none;" class="soModalExample1">
+            <h1>SoModal - Basic</h1>
+            <p>
+                禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ 
+            </p>
+            
         </div>
 
-        <div style="display:none;" class="soModalExample">
-            <h1>新太郎ニューモダル</h1>
-            <form action="/ma-page-de-traitement" method="post">
+        <div style="display:none;" class="soModalExample2">
+            <h1>SoModal - Formulaire</h1>
+            <form action="" method="post">
                 <div>
-                    <label for="nom">Nom :</label>
+                    <label for="nom">Login</label>
                     <input type="text" id="nom" />
                 </div>
                 <div>
-                    <label for="courriel">Courriel :</label>
+                    <label for="courriel">Password</label>
                     <input type="email" id="courriel" />
                 </div>
-                <div>
-                    <label for="message">Message :</label>
-                    <textarea id="message"></textarea>
-                </div>
             </form>
-            <button class="openModal">Open modal</button>
-            禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ	てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ
-
-            ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく
-
-            みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ
+            
+            <button class="soModalExampleClose">Fermer</button>
+            <button class="openModal" data-somodal-elem=".soModalExample2-2">Valider</button>
         </div>
+        
+        <div style="display:none;" class="soModalExample2-2">
+            <h1>SoModal - Formulaire réponse</h1>
+            <p>
+                禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ 
+            </p>
+        </div>
+        
+        <div style="display:none;" class="soModalExample3">
+            <h1>SoModal - Long contenu</h1>
+            <p>
+                禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ 
+                禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ 
+                禧背 ぎゃど橜 䶥ぷひゅぐ獤 ㄦい盨ボや, こし 揦鰧竤ち驦 ㄦい盨ボや で䤤䩦 ぷひゅ 禧背䛨 覵ミ谣碜りゃ ぴゅお嫯だぢ 骥夺ん極ご 亜禺焣そ椥 楌埨詃䥺駤 びゅけぴばぢょ 涯づ 餚きゅ氨, にょわニュ囤䣥 脩䧎饺せクィ 竨ちゃ てパ訦 クきゃ壃 ぐ獤, だぢ 㤣諥㧦に餣 亜禺焣そ椥 ゲ諤槣穃た 隊詞. 饥チュ 骥夺ん ぺ滣갤秺ふ ティ饦䥵𐤦樧 䤎果饯䋨ざ, 覵ミ谣碜りゃ 堥ず訧ル゜ロ ちょユりゅ監グォ 槣穃た ぷひゅ ぐ獤楌 クきゃ ティ饦䥵𐤦樧 きょ涥ぶクォ簣 ー觩ひょ覣叧, 樧䶥 埨詃䥺 禯窯黨なデ ぺ滣갤秺ふ 䤎果饯䋨ざ きょ涥ぶクォ簣 椺谧䩚僯坨 訣誧 绨媥睢, 覵ミ谣碜りゃ 穤つびょクきゃ クきゃ壃 詃䥺, ぎゃど橜楃みゃ 椺谧䩚僯坨 ちょユりゅ監グォ やゝ ぢゅゞ祚 にょわニュ囤䣥 穤つびょクきゃ 馯メみもしゅ 竤ち 揨䰧稞, 涯づ 䣵馯メ 尤䦨べあぢゃ ちょユりゅ監グォ, 穃た で䤤䩦 じ䛤楺騪ッ 揦鰧竤ち驦 ぼ䤨ぎょっ卧 餩窣 揦鰧竤ち驦 ゲ諤槣穃た ぜテく みもしゅ ぼ䤨ぎょっ卧 馯メみもしゅ ぎゃど, 䪩䤥 みもしゅ きゅ氨隊詞. ちょユりゅ監グォ ず訧ル゜ 䦨べ ら裌で䤤䩦 䰤り檧楥団, 姎鄤りょ .骥 にょわニュ囤䣥 ら裌で䤤䩦 訊みゅう䤩ひ 騪ッ脩 令ッにゅホ褩 䩨绣ビャ簨ゆ クきゃ, じ䛤楺騪ッ 槜氩褎チェしょ 訊みゅう䤩ひ 槜氩褎 と穨 びゃじょ裟ブ裪 ちょユりゅ監グォ 蝣涯づげじゃ ㄦい びゅけぴ 
+            </p>
+            <button class="openModal" data-somodal-elem=".soModalExample3">Précedent</button>
+            <button class="openModal" data-somodal-elem=".soModalExample3">Suivant</button>
+        </div>
+      
 
         <script type="text/javascript">
 
             var options;
             
-            var easing;
-            var time;
+            var easing, time;
 
             var examples = {
+                default: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow'
+                },
+                withCallBack: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    afterShow: function() {
+                        alert('afterShow');
+                    },
+                    beforeShow: function() {
+                        alert('beforeShow');
+                    },
+                    afterHide: function() {
+                        alert('afterHide');
+                    },
+                    beforeHide: function() {
+                        alert('beforeHide');
+                    }
+                },
+                noEffect: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: null,
+                    in: null,
+                    out: null
+                },
+                superScale: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        modal.css({scale: 2, opacity: 0});
+                        if (!alreadyOpened) {
+                            overlay.css({opacity: 0});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        modal.transition({
+                            scale: 1,
+                            opacity: 1
+                        }, time, easing)
+                        if (!alreadyOpened) {
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, hasNextModal) {
+                        modal.transition({scale: 2, opacity: 0}, time, easing);
+                        if (!hasNextModal) {
+                            overlay.transition({opacity: 0}, time, easing);
+                        }
+                    }
+                },
                 rotateX: {
                     classPrefix: 'soModalExample',
                     modalClasses: 'soModalExampleModalBoxShadow',
@@ -134,20 +208,15 @@
                             overlay.transition({opacity: 0.8}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
                             modal.transition({left: -modal.finalWidth}, time, easing);
-                            overlay.transition({opacity: 0}, time, easing, function() {
-                                overlay.remove();
-                                modal.remove();
-                            });
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
                             modal.transition({
                                 perspective: '800px',
                                 rotateX: '90deg'
-                              }, time, easing, function() {
-                                  modal.remove();
-                            });
+                              }, time, easing);
                         }
                     }
                 },
@@ -172,17 +241,12 @@
                             modal.transition({left: modal.finalPosition.left}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
                             modal.transition({scale: 0}, time, easing);
-                            overlay.transition({opacity: 0}, function() {
-                                overlay.remove();
-                                modal.remove();
-                            }, time, easing);
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
-                            modal.transition({left: -modal.finalWidth}, time, easing, function() {
-                                modal.remove();
-                            });
+                            modal.transition({left: -modal.finalWidth}, time, easing);
                         }
                     }
                 },
@@ -209,18 +273,13 @@
                             modal.transition({left: modal.finalPosition.left}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
-                            modal.transition({scale: 0}, function() {
-                                overlay.transition({opacity: 0}, function() {
-                                    overlay.remove();
-                                    modal.remove();
-                                }, time, easing);
-                            }, time, easing);
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
+                            modal.transition({scale: 0}, time, easing, function() {
+                                overlay.transition({opacity: 0}, time, easing);
+                            });
                         } else {
-                            modal.transition({left: -modal.finalWidth}, function() {
-                                modal.remove();
-                            }, time, easing);
+                            modal.transition({left: -modal.finalWidth}, time, easing);
                         }
                     }
                 },
@@ -237,10 +296,7 @@
                     },
                     out: function(modal, overlay) {
                         modal.transition({scale: 0, rotate: '720deg'}, time, easing);
-                        overlay.transition({opacity: 0}, function() {
-                            overlay.remove();
-                            modal.remove();
-                        }, time, easing);
+                        overlay.transition({opacity: 0}, time, easing);
                     }
                 },
                 slideIn: {
@@ -258,21 +314,53 @@
                             overlay.transition({opacity: 0.8}, time, easing);
                         }
                     },
-                    out: function(modal, overlay, alreadyOpened) {
-                        if (!alreadyOpened) {
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
                             modal.transition({left: -modal.finalWidth}, time, easing);
-                            overlay.transition({opacity: 0}, function() {
-                                overlay.remove();
-                                modal.remove();
-                            }, time, easing);
+                            overlay.transition({opacity: 0}, time, easing);
                         } else {
-                            modal.transition({left: $(window).width() + modal.finalWidth}, time, easing, function() {
-                                modal.remove();
+                            modal.transition({left: $(window).width() + modal.finalWidth}, time, easing);
+                        }
+                    }
+                },
+                bodyScale: {
+                    classPrefix: 'soModalExample',
+                    modalClasses: 'soModalExampleModalBoxShadow',
+                    init: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.css({opacity: 0});
+                            modal.css({scale: 0.2});
+                            $('body').css({scale: 1});
+                            overlay.css({opacity: 0});
+                        } else {
+                            modal.css({left: -modal.finalWidth});
+                        }
+                    },
+                    in: function(modal, overlay, alreadyOpened) {
+                        if (!alreadyOpened) {
+                            modal.transition({opacity: 1, queue: false}, time, easing);
+                            modal.transition({scale: 1}, time, easing);
+                            $('body').transition({scale: 0.9}, time, easing);
+                            overlay.transition({opacity: 0.8}, time, easing);
+                        } else {
+                            modal.transition({left: modal.finalPosition.left}, time, easing);
+                        }
+                    },
+                    out: function(modal, overlay, hasNextModal) {
+                        if (!hasNextModal) {
+                            modal.transition({scale: 0}, time, easing);
+                            $('body').transition({scale: 1}, time, easing, function() {
+                                $('body').css({scale: null});
                             });
+                            overlay.transition({opacity: 0}, time, easing);
+                        } else {
+                            modal.transition({left: -modal.finalWidth}, time, easing);
                         }
                     }
                 }
             }
+
+
 
             $.each(examples, function(id, example) {
                 $('.examples').append('<option value="' + id + '">' + id + '</option>')
@@ -297,7 +385,7 @@
 
             $(document).ready(function() {
                 $('body').on('click', '.openModal', function() {
-                    var modalContent = $('.soModalExample')
+                    var modalContent = $($(this).data("somodal-elem") + ':first')
                             .clone()
                             .removeClass('soModalExample')
                             .show()

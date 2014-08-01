@@ -39,11 +39,15 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
+            dep: {
+                files: [
+                { src: "dist/js/lib/jquery.js", dest: "dist/js/lib/jquery.min.js" },
+                { src: "dist/js/lib/jquery.transit.js", dest: "dist/js/lib/jquery.transit.min.js" },
+                ],
+            },
             build: {
                 files: [
                 { src: "dist/js/jquery.somodal.js", dest: "dist/js/jquery.somodal.min.js" },
-                { src: "dist/js/lib/jquery.js", dest: "dist/js/lib/jquery.min.js" },
-                { src: "dist/js/lib/jquery.transit.js", dest: "dist/js/lib/jquery.transit.min.js" },
                 ],
             }
         },
@@ -53,7 +57,14 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-          files: ["src/*"]
+            scripts: {
+              files: 'src/**/*.js',
+              tasks: ['concat:dist', 'uglify:build']
+            },
+            styles: {
+              files: 'src/**/*.css',
+              tasks: ['copy:css', 'cssmin']
+            }
         }
     });
 

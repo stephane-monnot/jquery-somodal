@@ -4,7 +4,6 @@
     left: 0;
     outline: 0 none;
     overflow-x: auto;
-    overflow-y: scroll;
     position: fixed;
     right: 0;
     top: 0;
@@ -24,7 +23,7 @@
 }
 
 .soModal {
-    cursor: inherit;
+    cursor: auto;
     position: relative;
     width: 60%;
     margin-top: 20px;

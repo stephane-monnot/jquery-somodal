@@ -17,11 +17,36 @@
         defaults: {
             classPrefix: 'soModalDefault',
             closeHTML: '<a title="Fermer" href="#"></a>',
+            overflowY: 'auto', // 'scroll' / 'auto'
             modalClasses: null,
             closeOnEscape: true,
-            init: null,
-            in: null,
-            out: null
+            afterShow: null,
+            beforeShow: null,
+            afterHide: null,
+            beforeHide: null,
+            init: function(modal, overlay, alreadyOpened) {
+                modal.css({opacity: 0});
+                if (!alreadyOpened) {
+                    overlay.css({opacity: 0});
+                }
+            },
+            in: function(modal, overlay, alreadyOpened) {
+                if (!alreadyOpened) {
+                    overlay.transition({opacity: 0.8}, function() {
+                        modal.transition({opacity: 1});
+                    });
+                } else {
+                    modal.transition({opacity: 1});
+                }
+            },
+            out: function(modal, overlay, hasNextModal) {
+                if (!hasNextModal) {
+                    modal.transition({opacity: 0});
+                    overlay.transition({opacity: 0});
+                } else {
+                    modal.transition({opacity: 0});
+                }
+            }
         },
         content: {
             body: ''
@@ -54,7 +79,6 @@
                 }
             }
         },
-        
         tabIndex: function(context, openContext) {
             $(this.tabbableElements).attr('tabIndex', !openContext ? 0 : -1)
             if(context) {
@@ -68,6 +92,8 @@
             modal: null,
             close: null
         },
+        nbTransitionRemaining: 0,
+        state: null,
         tabbableElements: 'a[href], area[href], input:not([disabled]),' +
 	'select:not([disabled]), textarea:not([disabled]),' +
 	'button:not([disabled]), iframe, object, embed, *[tabindex],' +
@@ -97,7 +123,7 @@
             })
             
             // Au clic sur le button close
-            this.elems.close.bind('click', function(e) {
+            $('.' + this.options.classPrefix + 'Close').bind('click', function(e) {
                     soModalObject.close();
                     e.preventDefault();
             })
@@ -124,7 +150,7 @@
             var soModalObject = this;
             
             // On crée l'overlay qu'on ajoute au body
-            if(!this.elems.overlay) {
+            if(!alreadyOpened) {
                 this.elems.overlay = $('<div>')
                         .addClass('soModalOverlay')
                         .addClass(this.options.classPrefix + 'Overlay')
@@ -133,7 +159,8 @@
             
             this.elems.overlay.appendTo('body')
             // On crée un container que l'on ajoute au body
-            this.elems.containerFixed = $('<div>').addClass('soModalContainerFixed');
+            this.elems.containerFixed = $('<div>').addClass('soModalContainerFixed')
+                    .css({overflowY: this.options.overflowY});
             this.elems.containerFixed.appendTo('body')
             
             // On crée une div avec le contenu à afficher et on l'ajoute au container
@@ -162,9 +189,90 @@
             this.updateSize();
             this.updatePosition();
             
-            this.elems.modal.addClass(this.options.classPrefix + 'ModalInit');
+            /*
+             * On definie notre propre function de transition pour la modal et
+             * l'overlay afin de se servir du callback des transitions pour 
+             * detecter la fin de toutes les animations
+             */
+            var soModalTransition = function(properties, duration, easing, callback2) {
+                if (typeof duration === 'function') {
+                    callback2 = duration;
+                    duration = undefined;
+                }
+                if (typeof easing === 'function') {
+                    callback2 = easing;
+                    easing = undefined;
+                }
+                if (typeof properties.complete !== 'undefined') {
+                    callback2 = properties.complete;
+                    delete properties.complete;
+                }
+                soModalObject.nbTransitionRemaining++;
+                callback = function() {
+                    if($.isFunction(callback2)) {
+                        callback2.apply(this);
+                    };
+                    soModalObject.nbTransitionRemaining--;
+                    // Si toutes les transitions ont été faites
+                    if(soModalObject.nbTransitionRemaining == 0) {
+                        // On appelle la function afterShow ou afterHide
+                        if((soModalObject.state == 'in' || soModalObject.state == null) 
+                            && $.isFunction(soModalObject.options.afterShow)
+                        ) {
+                            soModalObject.options.afterShow.call(
+                                soModalObject, 
+                                soModalObject.elems.modal, 
+                                soModalObject.elems.overlay, 
+                                alreadyOpened
+                            );
+                        } else if(soModalObject.state == 'out') {
+                            if($.isFunction(soModalObject.options.afterHide)) {
+                                soModalObject.options.afterHide.call(
+                                    soModalObject, 
+                                    soModalObject.elems.modal, 
+                                    soModalObject.elems.overlay, 
+                                    alreadyOpened
+                                );
+                            }
+                            soModalObject.elems.overlay.remove();
+                            soModalObject.elems.modal.remove();
+                            soModalObject.state = null;
+                        }
+                    }
+                }
+
+                $(this).transit(properties, duration, easing, callback);
+            }
             
-            // Etat initial
+            this.elems.modal.transition = soModalTransition;
+            this.elems.overlay.transition = soModalTransition;
+            
+            /*
+             * Etat initial (INIT)
+             */ 
+            
+            this.state = 'init';
+            
+            // On ajoute nos classes init
+            this.elems.modal.addClass(this.options.classPrefix + 'ModalInit');
+            this.elems.overlay.addClass(this.options.classPrefix + 'OverlayInit');
+            
+            if($.isFunction(this.options.init)) {
+                // On appelle la function init
+                this.options.init.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+            }
+            
+            // On appelle la function beforeShow
+            if($.isFunction(this.options.beforeShow)) {
+                this.options.beforeShow.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+            }
+            
+            /*
+             * Etat ouvert (IN)
+             */ 
+            
+            this.state = 'in';
+            
             // On ajoute les classes d'effets et supprime nos classes init
             this.elems.overlay.delay(1).queue(function() {
                 soModalObject.elems.overlay
@@ -180,25 +288,36 @@
                 soModalObject.elems.modal.dequeue()
             })
             
-            
-            if($.isFunction(this.options.init)) {
-                // On appelle la function init
-                this.options.init.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
-            }
-                        
-            // Etat ouvert
             if($.isFunction(this.options.in)) {
                 // On appelle la function in
                 this.options.in.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
             }
             
+            // Si aucune transition definie
+            if(soModalObject.nbTransitionRemaining == 0) {
+                // On appelle la function afterShow
+                if($.isFunction(this.options.afterShow)) {
+                    this.options.afterShow.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
+                }
+            }
+                        
             this.accessibility(true);
             
         },
-        close: function(alreadyOpened) {
+        close: function(hasNextModal) {
             var soModalObject = this;
             
-            // Etat fermé
+            // On appelle la function beforeHide
+            if($.isFunction(this.options.beforeHide)) {
+                this.options.beforeHide.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
+            }
+            
+            /*
+             * Etat fermé
+             */ 
+            
+            this.state = 'out';
+            
             // On supprime les classes d'effets
             this.elems.overlay.delay(1).queue(function() {
                 soModalObject.elems.overlay
@@ -217,10 +336,18 @@
             // On appelle la function out
             if($.isFunction(this.options.out)) {
                 // call user provided method
-                this.options.out.call(this, this.elems.modal, this.elems.overlay, alreadyOpened);
-            } else {
+                this.options.out.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
+            }
+            
+            // Si aucune transition definie
+            if(soModalObject.nbTransitionRemaining == 0) {
+                // On appelle la function afterHide
+                if($.isFunction(this.options.afterHide)) {
+                    this.options.afterHide.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
+                }
                 this.elems.overlay.remove();
                 this.elems.modal.remove();
+                this.state = null;
             }
             
             this.accessibility(false);
@@ -267,7 +394,7 @@
     };
     
     if (!$.support.transition) {
-        $.fn.transition = $.fn.animate;
+        $.fn.transit = $.fn.animate;
     }
 
     $.soModal = {
