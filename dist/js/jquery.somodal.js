@@ -417,5 +417,11 @@
         close: function() {
             soModal.close();
         },
+        updateSize: function() {
+            soModal.updateSize();
+        },
+        updatePosition: function() {
+            soModal.updatePosition();
+        }
     };
 })(jQuery);
