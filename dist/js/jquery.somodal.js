@@ -132,7 +132,10 @@
             $(document).keydown(this.keyDown);
             
             //Appel des fonctions onClosed
-            this.elems.containerFixed.bind("DOMNodeRemoved",function(){
+            this.elems.containerFixed.bind("DOMNodeRemoved",function(e){
+                if (e.target !== soModalObject.elems.modal.get(0)) {
+                    return;
+                }
                 soModalObject.elems.containerFixed.remove();
                 soModalObject.elems.containerFixed = null;
                 soModalObject.elems.modal = null;
