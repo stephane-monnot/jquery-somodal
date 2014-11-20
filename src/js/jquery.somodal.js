@@ -311,7 +311,7 @@
             var soModalObject = this;
             
             // On appelle la function beforeHide
-            if($.isFunction(this.options.beforeHide)) {
+            if($.isFunction(this.options.beforeHide) && this.elems.modal != null) {
                 this.options.beforeHide.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
             }
             
@@ -328,16 +328,18 @@
                     .removeClass(soModalObject.options.classPrefix + 'OverlayIn');
                 soModalObject.elems.overlay.dequeue();
             });
-            
-            this.elems.modal.delay(1).queue(function() {
-                soModalObject.elems.modal
-                    .addClass(soModalObject.options.classPrefix + 'ModalOut')
-                    .removeClass(soModalObject.options.classPrefix + 'ModalIn');
-                soModalObject.elems.modal.dequeue();
-            });
+
+            if (this.elems.modal != null) {
+                this.elems.modal.delay(1).queue(function() {
+                    soModalObject.elems.modal
+                        .addClass(soModalObject.options.classPrefix + 'ModalOut')
+                        .removeClass(soModalObject.options.classPrefix + 'ModalIn');
+                    soModalObject.elems.modal.dequeue();
+                });
+            }
             
             // On appelle la function out
-            if($.isFunction(this.options.out)) {
+            if($.isFunction(this.options.out) && this.elems.modal != null) {
                 // call user provided method
                 this.options.out.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
             }
@@ -349,7 +351,9 @@
                     this.options.afterHide.call(this, this.elems.modal, this.elems.overlay, hasNextModal);
                 }
                 this.elems.overlay.remove();
-                this.elems.modal.remove();
+                if (this.elems.modal != null) {
+                    this.elems.modal.remove();
+                }
                 this.state = null;
             }
             
