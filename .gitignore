@@ -1,6 +1,7 @@
 # Éditeurs #
 ############
 /nbproject/
+/.idea/
 
 # Node + bower components#
 node_modules
