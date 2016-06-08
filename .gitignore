@@ -7,3 +7,7 @@
 node_modules
 bower_components
 npm-debug.log
+
+# compass
+.sass-cache/
+.css.map
