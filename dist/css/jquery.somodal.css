@@ -1,46 +1,47 @@
 .soModalContainerFixed {
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    outline: 0 none;
-    overflow-x: auto;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1050;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  outline: 0 none;
+  overflow-x: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1050;
 }
 
 .soModalOverlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #FFFFFF;
-    cursor: pointer;
-    opacity: 0.6;
-    z-index: 1001;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  opacity: 0.6;
+  z-index: 1001;
 }
 
 .soModal {
-    cursor: auto;
-    position: relative;
-    width: 60%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: auto;
-    z-index: 101;
+  cursor: auto;
+  position: relative;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: auto;
+  z-index: 101;
 }
 
 .soModalClose {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 16px;
-    height: 16px;
-    background-image: url(img/close.png);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  background-image: url(img/close.png);
 }
-
 
 .soModalOpen {
-    overflow: hidden;
+  overflow: hidden;
 }
+
+/*# sourceMappingURL=jquery.somodal.css.map */
