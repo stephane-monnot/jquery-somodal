@@ -139,7 +139,16 @@
                 soModalObject.elems.containerFixed = null;
                 soModalObject.elems.modal          = null;
                 $('body').removeClass('soModalOpen');
-                $(document).trigger('closed.so.modal');
+
+                // If IE, need a delay
+                if (soModal.isIE()) {
+                    $(document).delay(5).queue(function() {
+                        $(document).trigger('closed.so.modal');
+                        $(document).dequeue();
+                    })
+                } else {
+                    $(document).trigger('closed.so.modal');
+                }
             });
         },
         accessibility: function (open) {
@@ -239,6 +248,7 @@
                             }
                             soModalObject.elems.overlay.remove();
                             soModalObject.elems.modal.remove();
+
                             soModalObject.state = null;
                         }
                     }
@@ -393,6 +403,9 @@
                 soModalObject.close();
                 e.preventDefault();
             }
+        },
+        isIE: function () {
+            return /(MSIE|Trident\/|Edge\/)/i.test(navigator.userAgent);
         },
         resize: function () {
             soModal.updateSize();
